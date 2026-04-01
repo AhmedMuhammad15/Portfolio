@@ -403,33 +403,61 @@ footer {
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
-    .hamburger { display: flex; }
+    /* Hamburger ko screen par laane ke liye */
+    .hamburger {
+        display: flex !important; /* Force display */
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 1002; /* Isay sab se upar rakho */
+        position: relative;
+    }
 
+    .hamburger span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background-color: #00f2fe; /* Bright Cyan color */
+        border-radius: 10px;
+        transition: 0.4s all ease;
+    }
+
+    /* Menu setting */
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 75%;
+        right: -70%; /* Bahar chupa hua */
+        width: 70%; 
         height: 100vh;
-        background: rgba(3, 5, 8, 0.98);
+        background: rgba(5, 9, 18, 0.98); /* Deep Dark Glass */
         backdrop-filter: blur(20px);
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 40px;
-        transition: 0.4s;
-        border-left: 1px solid var(--glass-border);
+        transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+        z-index: 1001;
     }
 
-    /* Checkbox Logic */
+    /* Jab click ho toh menu andar aaye */
     .menu-toggle:checked ~ .nav-links {
         right: 0;
     }
 
-    /* Hamburger to X */
-    .menu-toggle:checked ~ .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-    .menu-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
-    .menu-toggle:checked ~ .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(5px, -7px); }
+    /* --- HAMBURGER TO "X" TRANSFORMATION --- */
+    .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+        background-color: #d3b7b7; /* Becomes pink on X */
+    }
+
+    .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+        opacity: 0; /* Beech wali line gayab */
+    }
+
+    .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+        background-color: #d3b7b7;
 
     /* Mobile Centering */
     .hero { text-align: center; justify-content: center; }
